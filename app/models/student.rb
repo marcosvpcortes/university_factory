@@ -2,16 +2,10 @@ module University
   class Student < ApplicationRecord
     belongs_to :program
 
-    @@rest_client = RestClient    
-
     STUDENT_API_QUERY_COUNT = 200
-    
-    def self.rest_client rc
-      @@rest_client = rc
-    end
 
     def self.create_students_from_api
-      response =  @@rest_client.get "https://randomuser.me/api/", {params:{nat:"BR, US, FR", results:STUDENT_API_QUERY_COUNT}, content_type: :json, accept: :json}
+      response =  RestClient.get "https://randomuser.me/api/", {params:{nat:"BR, US, FR", results:STUDENT_API_QUERY_COUNT}, content_type: :json, accept: :json}
 
       JSON.parse(response.body)["results"]
           .map{|r| hash_to_student r}

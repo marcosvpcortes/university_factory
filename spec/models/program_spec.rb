@@ -1,8 +1,6 @@
-require './config/initializers/libs.rb'
-require './config/initializers/dependencies.rb'
-require './config/initializers/dependencies_test.rb'
+require_relative "../spec_helper.rb"
 
-describe Array do
+describe University::Program do
   before :each do
   end
 
@@ -13,8 +11,7 @@ describe Array do
   context "when create_from_api" do
     #subject {@all_programs}
     before :each do
-      @sfu_api = double
-      allow(@sfu_api).to receive(:find_dept) {
+      allow(University::SFUApi).to receive(:find_dept) {
 JSON.parse(
 <<eos
 [{
@@ -35,7 +32,6 @@ JSON.parse(
 eos
 )
       }
-      University::Program.set_sfu_api @sfu_api
     end
 
   after :each do

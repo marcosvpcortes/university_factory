@@ -2,15 +2,9 @@ require_relative "sfu_api"
 
 module University
   class Program < ApplicationRecord
-    
-    @@sfu_api = University::SFUApi
-
-    def self.set_sfu_api api
-      @@sfu_api = api
-    end
 
     def self.create_from_api
-      @@sfu_api.find_dept
+      University::SFUApi.find_dept
             .map{|dept|
                   p = Program.new(name:(dept["name"]||dept["text"]), code:dept["text"])
                   puts p.inspect
