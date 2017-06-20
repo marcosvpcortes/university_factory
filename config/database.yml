@@ -1,0 +1,21 @@
+
+test:
+  #host: '127.0.0.1'
+  adapter: 'sqlite3'
+  database: ':memory:'
+  # username: 'app' 
+  # password: 'app'
+#  encoding: 'utf8'
+  port: 3306
+  pool: 1
+
+production:
+  host: '127.0.0.1'
+  adapter: 'mysql2'
+  database: 'university'
+  username: 'university' 
+  password: 'university'
+  port: 3306
+#  encoding: 'utf8'
+  pool: 1
+
